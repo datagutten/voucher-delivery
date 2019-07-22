@@ -1,5 +1,5 @@
 <?php
-require_once 'logger/logger.class.php'; //Require the logger class
+require_once 'vendor/autoload.php';
 
 function get_voucher($user_id,$logpath) //First argument is some kind of user identification, like user name or phone number, second is the delivery method
 {
