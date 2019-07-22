@@ -3,7 +3,7 @@ require_once 'logger/logger.class.php'; //Require the logger class
 
 function get_voucher($user_id,$logpath) //First argument is some kind of user identification, like user name or phone number, second is the delivery method
 {
-	require 'config_voucher-delivery.php';
+	$config = require 'config_voucher-delivery.php';
 	$path=dirname(realpath(__FILE__));
 	$logger=new logger($config['logdir'].'/'.$logpath);
 
