@@ -1,7 +1,13 @@
 <?php
 require_once 'vendor/autoload.php';
 
-function get_voucher($user_id,$logpath) //First argument is some kind of user identification, like user name or phone number, second is the delivery method
+/**
+ * @param string $user_id Some kind of user identification (user name or phone number) to be written to the log file
+ * @param string $logpath Identifier for the delivery method, used as sub folder for the log files
+ * @return mixed
+ * @throws Exception
+ */
+function get_voucher($user_id,$logpath)
 {
 	$config = require 'config_voucher-delivery.php';
 	$path=dirname(realpath(__FILE__));
