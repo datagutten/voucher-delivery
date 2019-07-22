@@ -9,9 +9,8 @@ require_once 'vendor/autoload.php';
  */
 function get_voucher($user_id,$logpath)
 {
-	$config = require 'config_voucher-delivery.php';
 	$path=dirname(realpath(__FILE__));
-	$logger=new logger($config['logdir'].'/'.$logpath);
+	$logger=new logger($logpath);
 	if(!file_exists($path.'/vouchers.csv'))
 	    throw new Exception('Voucher file not found');
 
