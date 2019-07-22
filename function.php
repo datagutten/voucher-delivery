@@ -12,6 +12,8 @@ function get_voucher($user_id,$logpath)
 	$config = require 'config_voucher-delivery.php';
 	$path=dirname(realpath(__FILE__));
 	$logger=new logger($config['logdir'].'/'.$logpath);
+	if(!file_exists($path.'/vouchers.csv'))
+	    throw new Exception('Voucher file not found');
 
 	$vouchers=explode("\n",trim(file_get_contents($path.'/vouchers.csv'))); //Read the voucher file
 	$voucher=array_pop($vouchers); //Get a code
