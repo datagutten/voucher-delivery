@@ -2,3 +2,7 @@ config_alert.php
 config_voucher-delivery.php
 vouchers*
 vendor
+.idea
+clover.xml
+coverage_html
+log

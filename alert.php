@@ -1,7 +1,9 @@
 <?Php
-chdir(dirname(realpath(__FILE__))); //Bytt til mappen scriptet ligger i så relative filbaner blir riktige
-require 'PHPMailer/PHPMailerAutoload.php';
+require 'vendor/autoload.php';
 //Create a new PHPMailer instance
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 $mail = new PHPMailer;
 require 'config_alert.php';
 
@@ -16,6 +18,7 @@ $mail->Port = $config['smtp_port'];
 $mail->SMTPAuth = false;
 //Set who the message is to be sent from
 $mail->setFrom($config['mail_from']);
+$mail->Timeout = 1;
 //Set who the message is to be sent to
 foreach($config['recipients'] as $recipient)
 	$mail->addAddress($recipient);
@@ -24,8 +27,9 @@ foreach($config['recipients'] as $recipient)
 $mail->isHTML(true); // Set email format to HTML
 
 
-$vouchers=explode("\n",trim(file_get_contents('vouchers.csv')));
-$count=count($vouchers);
+//$vouchers=explode("\n",trim(file_get_contents('vouchers.csv')));
+$vouchers = new \askommune\voucher_delivery\vouchers();
+$count=$vouchers->voucher_count();
 //$count=9;
 //var_dump($count);
 
@@ -34,15 +38,15 @@ if($count<$config['limit'] || (isset($argv[1]) && $argv[1]=='debug'))
 	$mail->Subject=$config['mail_subject'];
 	$mail->Body=sprintf($config['mail_body'],$count);
 
-	if(!$mail->send()) {
-	   echo 'Message could not be sent.';
-	   echo 'Mailer Error:'.$mail->ErrorInfo;
-	   exit;
-	}
-	else
-		echo "Message has been sent\n";
-
+	try {
+	    $mail->send();
+        echo "Message has been sent\n";
+    }
+     catch (Exception $e) {
+        echo $e->errorMessage();
+    } catch (\Exception $e) {
+        echo $e->getMessage();
+    }
 }
 elseif(isset($argv[1]) && $argv[1]=='check')
 	echo "$count koder gjenstår\n";
-?>

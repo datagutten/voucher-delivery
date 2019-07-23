@@ -1,25 +1,17 @@
 <?php
-require_once 'vendor/autoload.php';
+require 'vendor/autoload.php';
 
 /**
  * @param string $user_id Some kind of user identification (user name or phone number) to be written to the log file
  * @param string $logpath Identifier for the delivery method, used as sub folder for the log files
+ * @param string $voucher_file Voucher file to override default
  * @return mixed
  * @throws Exception
  */
-function get_voucher($user_id,$logpath)
+function get_voucher($user_id,$logpath, $voucher_file=Null)
 {
-	$path=dirname(realpath(__FILE__));
-	$logger=new logger($logpath);
-	if(!file_exists($path.'/vouchers.csv'))
-	    throw new Exception('Voucher file not found');
-
-	$vouchers=explode("\n",trim(file_get_contents($path.'/vouchers.csv'))); //Read the voucher file
-	$voucher=array_pop($vouchers); //Get a code
-
-	$logger->writelog(array($user_id,$voucher)); //Write to the log
-	
-	file_put_contents($path.'/vouchers.csv',implode("\n",$vouchers)); //Write the code file
+	$vouchers = new \askommune\voucher_delivery\vouchers($logpath, $voucher_file);
+    $voucher = $vouchers->get_voucher($user_id);
 
 	return $voucher; //Return the voucher code
 }

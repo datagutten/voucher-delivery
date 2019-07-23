@@ -1,0 +1,9 @@
+<?Php
+$config['recipients']=array('anders.birkenes@as.kommune.no');
+$config['mail_from']='gjestenett@debianweb-it';
+$config['smtp_server']='mail02-bl01.as-admin.no';
+$config['smtp_port']=25;
+$config['mail_subject']='Lite koder igjen for gjestenett';
+$config['mail_body']='Det er %d koder igjen for gjestenett';
+$config['limit']=200;
+?>
