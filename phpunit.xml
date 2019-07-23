@@ -9,6 +9,7 @@
         <whitelist>
             <file>function.php</file>
             <file>alert.php</file>
+            <directory suffix=".php">./src</directory>
         </whitelist>
     </filter>
     <logging>
