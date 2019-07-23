@@ -6,7 +6,9 @@
  * Time: 12:01
  */
 
-class AlertTest extends \PHPUnit\Framework\TestCase
+use PHPUnit\Framework\TestCase;
+
+class AlertTest extends TestCase
 {
     public $voucher_file;
     function setUp(): void

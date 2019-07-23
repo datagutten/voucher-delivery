@@ -3,6 +3,7 @@ require 'vendor/autoload.php';
 //Create a new PHPMailer instance
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use askommune\voucher_delivery\vouchers;
 
 $mail = new PHPMailer;
 require 'config_alert.php';
@@ -28,7 +29,7 @@ $mail->isHTML(true); // Set email format to HTML
 
 
 //$vouchers=explode("\n",trim(file_get_contents('vouchers.csv')));
-$vouchers = new \askommune\voucher_delivery\vouchers();
+$vouchers = new vouchers();
 $count=$vouchers->voucher_count();
 //$count=9;
 //var_dump($count);
