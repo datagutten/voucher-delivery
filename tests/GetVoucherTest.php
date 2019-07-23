@@ -5,10 +5,12 @@ use PHPUnit\Framework\TestCase;
 
 class GetVoucherTest extends TestCase
 {
+    public $voucher_file;
     function setUp(): void
     {
-        if(!file_exists(sprintf('%s/../vouchers.csv', __DIR__)))
-            copy(sprintf('%s/sample_data/test.csv', __DIR__), sprintf('%s/../vouchers.csv', __DIR__));
+        $this->voucher_file = sprintf('%s/../vouchers.csv', __DIR__);
+        if(!file_exists($this->voucher_file))
+            copy(sprintf('%s/sample_data/test.csv', __DIR__), $this->voucher_file);
         else
             throw new Exception('voucher file exists');
     }
@@ -25,8 +27,16 @@ class GetVoucherTest extends TestCase
         $this->assertEquals('', $voucher);
     }
 
+    function testMissingVoucherFile()
+    {
+        $this->expectException('Exception');
+        unlink($this->voucher_file);
+        get_voucher('test_user', 'test_method');
+    }
+
     function tearDown(): void
     {
-        unlink(sprintf('%s/../vouchers.csv', __DIR__));
+        if(file_exists($this->voucher_file))
+            unlink($this->voucher_file);
     }
 }
