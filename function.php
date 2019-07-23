@@ -10,7 +10,7 @@ require 'vendor/autoload.php';
  */
 function get_voucher($user_id,$logpath, $voucher_file=Null)
 {
-	$vouchers = new \askommune\voucher_delivery\vouchers($logpath, $voucher_file);
+	$vouchers = new \askommune\VoucherDelivery\vouchers($logpath, $voucher_file);
     $voucher = $vouchers->get_voucher($user_id);
 
 	return $voucher; //Return the voucher code

@@ -3,7 +3,7 @@ require 'vendor/autoload.php';
 //Create a new PHPMailer instance
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-use askommune\voucher_delivery\vouchers;
+use askommune\VoucherDelivery\vouchers;
 
 $mail = new PHPMailer;
 require 'config_alert.php';

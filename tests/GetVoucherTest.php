@@ -2,7 +2,7 @@
 
 
 use PHPUnit\Framework\TestCase;
-use askommune\voucher_delivery\vouchers;
+use \askommune\VoucherDelivery\vouchers;
 
 class GetVoucherTest extends TestCase
 {
