@@ -1,6 +1,0 @@
-[submodule "logger"]
-	path = logger
-	url = git@github.com:datagutten/logger.git
-[submodule "PHPMailer"]
-	path = PHPMailer
-	url = https://github.com/PHPMailer/PHPMailer.git
