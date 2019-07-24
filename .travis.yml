@@ -21,7 +21,7 @@ before_script:
  - vendor/bin/phpunit --version
 
 script:
- - phpunir
+ - phpunit
 
 after_script:
   - bash <(curl -s https://codecov.io/bash)
