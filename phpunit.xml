@@ -11,6 +11,7 @@
             <file>alert.php</file>
             <file>convertvouchers.php</file>
             <directory suffix=".php">./src</directory>
+            <directory suffix=".php">./web</directory>
         </whitelist>
     </filter>
     <logging>

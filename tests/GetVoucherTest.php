@@ -44,6 +44,16 @@ class GetVoucherTest extends TestCase
         $this->vouchers->get_voucher('test_user');
     }
 
+    function testVoucherSMS()
+    {
+        copy(sprintf('%s/sample_data/test.csv', __DIR__), sprintf('%s/../vouchers.csv', __DIR__));
+        ob_start();
+        $_POST['sender'] = 'test';
+        require __DIR__.'/../web/sms.php';
+        $this->assertEquals('Din kode for Ås kommunes gjestenett er voucher2', ob_get_clean());
+        unlink(sprintf('%s/../vouchers.csv', __DIR__));
+    }
+
     function tearDown(): void
     {
         if(file_exists($this->vouchers->voucher_file))
