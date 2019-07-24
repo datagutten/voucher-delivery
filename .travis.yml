@@ -21,7 +21,7 @@ before_script:
  - vendor/bin/phpunit --version
 
 script:
- - vendor/bin/phpunit --coverage-clover clover.xml --bootstrap vendor/autoload.php tests
+ - phpunir
 
 after_script:
   - bash <(curl -s https://codecov.io/bash)
