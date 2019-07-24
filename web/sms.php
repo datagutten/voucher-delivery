@@ -6,8 +6,10 @@
  * Time: 13:12
  */
 //SMS gateway fetches this file to get voucher
-require '../vendor/autoload.php';
+
+require __DIR__.'/../vendor/autoload.php';
 $messages = require 'messages.php';
+
 if(!empty($_POST['sender'])) {
     try {
         $vouchers = new \askommune\VoucherDelivery\vouchers('sms');
@@ -16,7 +18,6 @@ if(!empty($_POST['sender'])) {
     }
     catch (Exception $e)
     {
-        echo $e->getMessage();
         echo $messages['error'];
     }
 }
